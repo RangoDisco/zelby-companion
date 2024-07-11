@@ -14,6 +14,7 @@
 		C6CF57512C400C8900F8C379 /* zelby_compagnionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF57502C400C8900F8C379 /* zelby_compagnionTests.swift */; };
 		C6CF575B2C400C8900F8C379 /* zelby_compagnionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF575A2C400C8900F8C379 /* zelby_compagnionUITests.swift */; };
 		C6CF575D2C400C8900F8C379 /* zelby_compagnionUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF575C2C400C8900F8C379 /* zelby_compagnionUITestsLaunchTests.swift */; };
+		C6CF576B2C40200E00F8C379 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF576A2C40200E00F8C379 /* HealthManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,8 @@
 		C6CF57562C400C8900F8C379 /* zelby-compagnionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "zelby-compagnionUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6CF575A2C400C8900F8C379 /* zelby_compagnionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = zelby_compagnionUITests.swift; sourceTree = "<group>"; };
 		C6CF575C2C400C8900F8C379 /* zelby_compagnionUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = zelby_compagnionUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C6CF57692C401A5600F8C379 /* zelby-compagnion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "zelby-compagnion.entitlements"; sourceTree = "<group>"; };
+		C6CF576A2C40200E00F8C379 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,10 +97,12 @@
 		C6CF573E2C400C8800F8C379 /* zelby-compagnion */ = {
 			isa = PBXGroup;
 			children = (
+				C6CF57692C401A5600F8C379 /* zelby-compagnion.entitlements */,
 				C6CF573F2C400C8800F8C379 /* zelby_compagnionApp.swift */,
 				C6CF57412C400C8800F8C379 /* ContentView.swift */,
 				C6CF57432C400C8900F8C379 /* Assets.xcassets */,
 				C6CF57452C400C8900F8C379 /* Preview Content */,
+				C6CF576A2C40200E00F8C379 /* HealthManager.swift */,
 			);
 			path = "zelby-compagnion";
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6CF57422C400C8800F8C379 /* ContentView.swift in Sources */,
+				C6CF576B2C40200E00F8C379 /* HealthManager.swift in Sources */,
 				C6CF57402C400C8800F8C379 /* zelby_compagnionApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,11 +425,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "zelby-compagnion/zelby-compagnion.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"zelby-compagnion/Preview Content\"";
+				DEVELOPMENT_TEAM = 2SMMLUC43Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Please allow access";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -447,11 +456,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "zelby-compagnion/zelby-compagnion.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"zelby-compagnion/Preview Content\"";
+				DEVELOPMENT_TEAM = 2SMMLUC43Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Please allow access";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

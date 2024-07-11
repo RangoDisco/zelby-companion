@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var manager = HealthManager()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
+            Image(systemName: "figure.strengthtraining.traditional")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("Fetching todays data!")
         }
         .padding()
+        .onAppear {
+            manager.fetchHealthData()
+        }
     }
 }
 

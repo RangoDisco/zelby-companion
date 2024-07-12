@@ -47,6 +47,7 @@
 		C6CF575C2C400C8900F8C379 /* zelby_compagnionUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = zelby_compagnionUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C6CF57692C401A5600F8C379 /* zelby-compagnion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "zelby-compagnion.entitlements"; sourceTree = "<group>"; };
 		C6CF576A2C40200E00F8C379 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
+		C6CF576C2C4054AE00F8C379 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +78,7 @@
 		C6CF57332C400C8800F8C379 = {
 			isa = PBXGroup;
 			children = (
+				C6CF576C2C4054AE00F8C379 /* README.md */,
 				C6CF573E2C400C8800F8C379 /* zelby-compagnion */,
 				C6CF574F2C400C8900F8C379 /* zelby-compagnionTests */,
 				C6CF57592C400C8900F8C379 /* zelby-compagnionUITests */,

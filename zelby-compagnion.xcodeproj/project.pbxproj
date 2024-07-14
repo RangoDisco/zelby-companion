@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C6348BDB2C43BBAE00DAF7AB /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6348BDA2C43BBAE00DAF7AB /* Env.swift */; };
 		C6CF57402C400C8800F8C379 /* zelby_compagnionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF573F2C400C8800F8C379 /* zelby_compagnionApp.swift */; };
 		C6CF57422C400C8800F8C379 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF57412C400C8800F8C379 /* ContentView.swift */; };
 		C6CF57442C400C8900F8C379 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6CF57432C400C8900F8C379 /* Assets.xcassets */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C6348BD92C43BB0400DAF7AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C6348BDA2C43BBAE00DAF7AB /* Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
 		C6CF573C2C400C8800F8C379 /* zelby-compagnion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "zelby-compagnion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6CF573F2C400C8800F8C379 /* zelby_compagnionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = zelby_compagnionApp.swift; sourceTree = "<group>"; };
 		C6CF57412C400C8800F8C379 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,12 +102,14 @@
 		C6CF573E2C400C8800F8C379 /* zelby-compagnion */ = {
 			isa = PBXGroup;
 			children = (
+				C6348BD92C43BB0400DAF7AB /* Info.plist */,
 				C6CF57692C401A5600F8C379 /* zelby-compagnion.entitlements */,
 				C6CF573F2C400C8800F8C379 /* zelby_compagnionApp.swift */,
 				C6CF57412C400C8800F8C379 /* ContentView.swift */,
 				C6CF57432C400C8900F8C379 /* Assets.xcassets */,
 				C6CF57452C400C8900F8C379 /* Preview Content */,
 				C6CF576A2C40200E00F8C379 /* HealthManager.swift */,
+				C6348BDA2C43BBAE00DAF7AB /* Env.swift */,
 			);
 			path = "zelby-compagnion";
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6CF57422C400C8800F8C379 /* ContentView.swift in Sources */,
+				C6348BDB2C43BBAE00DAF7AB /* Env.swift in Sources */,
 				C6CF576B2C40200E00F8C379 /* HealthManager.swift in Sources */,
 				C6CF57402C400C8800F8C379 /* zelby_compagnionApp.swift in Sources */,
 			);
@@ -434,6 +440,7 @@
 				DEVELOPMENT_TEAM = 2SMMLUC43Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "zelby-compagnion/Info.plist";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Please allow access";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -465,6 +472,7 @@
 				DEVELOPMENT_TEAM = 2SMMLUC43Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "zelby-compagnion/Info.plist";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Please allow access";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

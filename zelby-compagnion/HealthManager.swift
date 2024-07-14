@@ -1,16 +1,9 @@
-//
-//  HealthManager.swift
-//  zelby-compagnion
-//
-//  Created by Maxime Dias on 11/07/2024.
-//
-
 import Foundation
 import HealthKit
 
 extension Date {
     static var startOfDay: Date {
-         Calendar.current.date(byAdding: .day, value: -1, to: Calendar.current.startOfDay(for: Date()))!
+        Calendar.current.startOfDay(for: Date())
     }
 }
 
@@ -35,11 +28,11 @@ extension HKWorkoutActivityType {
     }
 }
 
-struct WorkoutData: Encodable {
+struct WorkoutData: Codable {
     var name: String?
-    var kcalBurned: Double
+    var kcalBurned: Int
     var activityType: String
-    var duration: TimeInterval
+    var duration: Int
 }
 
 class HealthManager: ObservableObject {
@@ -51,9 +44,10 @@ class HealthManager: ObservableObject {
         let steps = HKQuantityType(.stepCount)
         let burntCalories = HKQuantityType(.activeEnergyBurned)
         let consumedCalories = HKQuantityType(.dietaryEnergyConsumed)
+        let waterDrank = HKQuantityType(.dietaryWater)
         let sessions = HKObjectType.workoutType()
         
-        let healthTypes: Set = [steps, burntCalories, consumedCalories, sessions]
+        let healthTypes: Set = [steps, burntCalories, consumedCalories, waterDrank, sessions]
         
         // Ask all permissions
         Task {
@@ -65,14 +59,14 @@ class HealthManager: ObservableObject {
         }
     }
     
-    
     // Main function that fetches everything needed for the bot
     func fetchHealthData() {
         // Declare needed variables
         var steps: Int = 0
         var burntKcal: Int = 0
+        var water: Int = 0
         var consumedKcal: Int = 0
-        var workouts = ""
+        var workouts: Data?
         let group = DispatchGroup()
         
         // Fetch steps
@@ -84,42 +78,51 @@ class HealthManager: ObservableObject {
         
         // Fetch burnt kcal
         group.enter()
-        fetchCountableData(type: HKQuantityType(.activeEnergyBurned), countType: .kilocalorie()) {count, error in
+        fetchCountableData(type: HKQuantityType(.activeEnergyBurned), countType: .kilocalorie()) { count, error in
             burntKcal = count
             group.leave()
         }
         
         // Fetch consumed kcal
         group.enter()
-        fetchCountableData(type: HKQuantityType(.dietaryEnergyConsumed), countType: .kilocalorie()) {count, error in
+        fetchCountableData(type: HKQuantityType(.dietaryEnergyConsumed), countType: .kilocalorie()) { count, error in
             consumedKcal = count
+            group.leave()
+        }
+        
+        // Fetch water drank
+        group.enter()
+        fetchCountableData(type: HKQuantityType(.dietaryWater), countType: .literUnit(with: .milli)) { count, error in
+            water = count
             group.leave()
         }
         
         // Fetch sessions
         group.enter()
-        fetchSessions(){sessions in
-            workouts = sessions
+        fetchSessions { sessions, error in
+            if let sessions = sessions {
+                workouts = sessions
+            }
             group.leave()
         }
         
-        
         // Log everything
         group.notify(queue: .main) {
-            print("Steps: \(steps)")
-            print("Kcal burnt: \(burntKcal)")
-            print("Kcal consumed: \(consumedKcal)")
-            print("Workouts: \(workouts)")
-            
+            // Ensure the workouts data is properly included in the body
             let body: [String: Any] = [
                 "steps": steps,
                 "kcalBurned": burntKcal,
                 "kcalConsumed": consumedKcal,
-                "workouts": workouts
+                "milliliterDrank": water,
+                "workouts": workouts != nil ? try! JSONSerialization.jsonObject(with: workouts!) : []
             ]
             
             do {
                 let jsonBody = try JSONSerialization.data(withJSONObject: body, options: [])
+                if let jsonString = String(data: jsonBody, encoding: .utf8) {
+                    print(jsonString)
+                }
+                
                 self.sendMetrics(data: jsonBody)
             } catch {
                 print("Error serializing JSON:", error)
@@ -145,10 +148,10 @@ class HealthManager: ObservableObject {
         healthStore.execute(query)
     }
     
-    func fetchSessions(completion: @escaping (String) -> Void) {
+    func fetchSessions(completion: @escaping (Data?, String?) -> Void) {
         let sessions = HKObjectType.workoutType()
         let predicate = NSPredicate(format: "startDate >= %@ AND startDate <= %@", argumentArray: [.startOfDay, Date()])
-
+        
         // Fetch all workouts for today
         let query = HKSampleQuery(sampleType: sessions, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (_, samples, error) in
             guard let workouts = samples as? [HKWorkout], error == nil else {
@@ -160,32 +163,29 @@ class HealthManager: ObservableObject {
             
             // Loop and create new Object based on data needed for the bot
             for workout in workouts {
+                print(workout)
                 let name = workout.metadata?["HKWorkoutBrandName"] as? String
-                let kcal = workout.totalEnergyBurned?.doubleValue(for: HKUnit.kilocalorie()) ?? 0
+                let kcal = Int(workout.totalEnergyBurned?.doubleValue(for: HKUnit.kilocalorie()) ?? 0)
                 let type = workout.workoutActivityType.activityName
                 
-                let parsedWorkout = WorkoutData(name: name, kcalBurned: kcal, activityType: type, duration: workout.duration)
+                let parsedWorkout = WorkoutData(name: name, kcalBurned: kcal, activityType: type, duration: Int(workout.duration))
                 parsedWorkouts.append(parsedWorkout)
             }
             do {
-                let encoder = JSONEncoder()
-                let jsonData = try encoder.encode(parsedWorkouts)
-                let jsonString = String(data: jsonData, encoding: .utf8) ?? ""
-                
-                
-                completion(jsonString)
+                // Convert WorkoutData objects to JSON
+                let jsonData = try JSONEncoder().encode(parsedWorkouts)
+                completion(jsonData, nil)
             } catch {
-                print("Error")
-                completion("error")
+                print("Error encoding JSON:", error)
+                completion(nil, "error")
             }
-            
         }
         healthStore.execute(query)
     }
     
     func sendMetrics(data: Data) {
         // Call API to store the metrics
-        guard let url = URL(string: "http://localhost:8080/api/send-metrics") else {
+        guard let url = URL(string: Env.baseUrl + "/api/metrics") else {
             print("Invalid URL")
             return
         }
@@ -193,10 +193,12 @@ class HealthManager: ObservableObject {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(Env.apiKey, forHTTPHeaderField: "X-API-KEY")
+        request.httpBody = data
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                print ("Client error")
+                print("Client error:", error)
                 return
             }
             

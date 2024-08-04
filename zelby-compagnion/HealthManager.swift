@@ -108,12 +108,15 @@ class HealthManager: ObservableObject {
         
         // Log everything
         group.notify(queue: .main) {
-            // Ensure the workouts data is properly included in the body
+            let metrics: [[String: Any]] = [
+                ["type": "KCAL_BURNED", "value": burntKcal],
+                ["type": "KCAL_CONSUMED", "value": consumedKcal],
+                ["type": "MILLILITER_DRANK", "value": water],
+                ["type": "STEPS", "value": steps]
+            ]
+            
             let body: [String: Any] = [
-                "steps": steps,
-                "kcalBurned": burntKcal,
-                "kcalConsumed": consumedKcal,
-                "milliliterDrank": water,
+                "metrics": metrics,
                 "workouts": workouts != nil ? try! JSONSerialization.jsonObject(with: workouts!) : []
             ]
             
@@ -185,7 +188,7 @@ class HealthManager: ObservableObject {
     
     func sendMetrics(data: Data) {
         // Call API to store the metrics
-        guard let url = URL(string: Env.baseUrl + "/api/metrics") else {
+        guard let url = URL(string: Env.baseUrl + "/api/summaries") else {
             print("Invalid URL")
             return
         }

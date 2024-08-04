@@ -3,4 +3,102 @@
    uuid = "85B5EDF5-1C0C-48A6-8904-2CAE2AD503C5"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FE878983-5D8B-43D6-ACE7-73B1C3F9633B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "zelby-compagnion/HealthManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "fetchHealthData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FE878983-5D8B-43D6-ACE7-73B1C3F9633B - d786cec9bf5554ea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in zelby_compagnion.HealthManager.fetchHealthData() -&gt; ()"
+                  moduleName = "zelby-compagnion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rango/Documents/Dev/Moi/swift/zelby-compagnion/zelby-compagnion/HealthManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "448">
+               </Location>
+               <Location
+                  uuid = "FE878983-5D8B-43D6-ACE7-73B1C3F9633B - b5300b4632bed580"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #6 () -&gt; () in zelby_compagnion.HealthManager.fetchHealthData() -&gt; ()"
+                  moduleName = "zelby-compagnion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rango/Documents/Dev/Moi/swift/zelby-compagnion/zelby-compagnion/HealthManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "428">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "08BC8BF3-9E8E-4A95-AA9C-49FB764745A2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "zelby-compagnion/HealthManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "sendMetrics(data:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "08BC8BF3-9E8E-4A95-AA9C-49FB764745A2 - f7a6da54bbd7a9ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "zelby_compagnion.HealthManager.sendMetrics(data: Foundation.Data) -&gt; ()"
+                  moduleName = "zelby-compagnion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rango/Documents/Dev/Moi/swift/zelby-compagnion/zelby-compagnion/HealthManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "1092">
+               </Location>
+               <Location
+                  uuid = "08BC8BF3-9E8E-4A95-AA9C-49FB764745A2 - b9fb9296144a66ad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in zelby_compagnion.HealthManager.sendMetrics(data: Foundation.Data) -&gt; ()"
+                  moduleName = "zelby-compagnion"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rango/Documents/Dev/Moi/swift/zelby-compagnion/zelby-compagnion/HealthManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "316">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

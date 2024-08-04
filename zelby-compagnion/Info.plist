@@ -5,6 +5,6 @@
 	<key>BaseUrl</key>
 	<string>https://zelby-api.rangodisco.eu</string>
 	<key>ExternalApiKey</key>
-	<string>SLi2SCQNpDpQbK6b8qXz8ztnXHiMC0Ce</string>
+	<string>YOUR_KEY</string>
 </dict>
 </plist>
